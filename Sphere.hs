@@ -1,6 +1,6 @@
 {-# LANGUAGE DeriveDataTypeable #-}
 
-module Sphere (Sphere) where
+module Sphere where
 
 import Data.Data
 import Text.JSON.Generic
