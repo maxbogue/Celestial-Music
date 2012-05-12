@@ -24,9 +24,11 @@ display spheresRef anglesRef = do
     spheres <- get spheresRef
     angles <- get anglesRef
     mapM_ (\(s, a) -> renderCircle (distance s) a 2) (zip spheres angles)
-    flush
+    swapBuffers
 
-idle spheresRef anglesRef = do
+timer spheresRef anglesRef = do
     angles <- get anglesRef
-    anglesRef $=! (map (+ (pi / 5000)) angles)
+    spheres <- get spheresRef
+    anglesRef $=! (map (\(s, a) -> a + period s) (zip spheres angles))
+    addTimerCallback 10 $ timer spheresRef anglesRef
     postRedisplay Nothing
