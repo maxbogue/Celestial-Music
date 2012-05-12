@@ -4,6 +4,11 @@
     "period": 87.969,
     "distance": 5.79e7
 }, {
+    "name": "Venus",
+    "mass": 4.87e24,
+    "period": 224.7,
+    "distance": 1.08e8
+}, {
     "name": "Earth",
     "mass": 5.97e24,
     "period": 365.26,
@@ -19,8 +24,18 @@
     "period": 4332.59,
     "distance": 7.79e8
 }, {
+    "name": "Saturn",
+    "mass": 5.68e26,
+    "period": 10759.22,
+    "distance": 1.43e9
+}, {
     "name": "Neptune",
     "mass": 1.02e26,
     "period": 60190,
     "distance": 4.50e9
+}, {
+    "name": "Uranus",
+    "mass": 8.68e25,
+    "period": 30779,
+    "distance": 2.88e9
 }]
