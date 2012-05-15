@@ -1,4 +1,5 @@
 import Data.IORef
+import Data.List (sort)
 import Graphics.UI.GLUT hiding (Sphere)
 
 import Display
@@ -13,7 +14,7 @@ reduceSphere s = Sphere {
 
 main = do 
     spheres <- readSpheres
-    spheresRef <- newIORef $ map reduceSphere spheres
+    spheresRef <- newIORef $ map reduceSphere (sort spheres)
     anglesRef <- let n = fromIntegral $ length spheres in
         newIORef [0 | i <- [1..n]]
 

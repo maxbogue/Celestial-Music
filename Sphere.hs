@@ -9,4 +9,4 @@ data Sphere = Sphere {
     distance :: Float, -- km
     period :: Float,   -- Days
     mass :: Float      -- kg
-  } deriving (Typeable, Data, Show)
+  } deriving (Typeable, Data, Show, Eq, Ord)
