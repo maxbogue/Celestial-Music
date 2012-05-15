@@ -36,4 +36,4 @@ initOpenAL = do
 main = do
     initOpenAL
     playSine 1 440
-    threadDelay 1e6
+    threadDelay 1000000

@@ -2,6 +2,7 @@ module Display where
 
 import Graphics.UI.GLUT
 import Sphere
+import Music
 
 windowPixels = 800 :: Integer
 windowScale  = 100 :: Float
@@ -40,6 +41,18 @@ display spheresRef anglesRef = do
 timer spheresRef anglesRef = do
     angles <- get anglesRef
     spheres <- get spheresRef
-    anglesRef $=! (map (\(s, a) -> a + period s) (zip spheres angles))
+    newAngles <- mapM
+        (\(s, a) -> do
+            let a' = a + period s
+            a'' <- if a' > 2 * pi
+                then do
+                    playSine (max 0.8 $ 0.02 * pi / period s) (mass s)
+                    {-playSine 1 (mass s)-}
+                    return $ a' - 2 * pi
+                else do
+                    return a'
+            return a'')
+        (zip spheres angles)
+    anglesRef $=! newAngles
     addTimerCallback 10 $ timer spheresRef anglesRef
     postRedisplay Nothing

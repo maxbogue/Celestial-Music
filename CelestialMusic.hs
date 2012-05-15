@@ -1,20 +1,23 @@
-import Graphics.UI.GLUT hiding (Sphere)
 import Data.IORef
+import Graphics.UI.GLUT hiding (Sphere)
 
 import Display
 import Input (readSpheres)
+import Music
 import Sphere
 
 reduceSphere s = Sphere {
     distance = (distance s) ** (1/2) * windowScale / 8e4,
     period   = 1 / (period s ** (1/2)),
-    mass     = mass s}
+    mass     = 3.5e8 / (mass s ** (1/4))}
 
 main = do 
     spheres <- readSpheres
     spheresRef <- newIORef $ map reduceSphere spheres
     anglesRef <- let n = fromIntegral $ length spheres in
         newIORef [0 | i <- [1..n]]
+
+    initOpenAL
 
     getArgsAndInitialize
     initialDisplayMode $= [DoubleBuffered]
