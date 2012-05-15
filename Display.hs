@@ -10,10 +10,16 @@ windowConversion = fromIntegral windowPixels / windowScale / 2
 
 circleColors :: [Color3 Float]
 circleColors = [
-    Color3 ( 15 / 255) ( 80 / 255) (170 / 255),
-    Color3 (190 / 255) (  0 / 255) (140 / 255),
-    Color3 (  0 / 255) (180 / 255) (240 / 255),
-    Color3 (255 / 255) (155 / 255) (  0 / 255)]
+    Color3 (255 / 255) (  0 / 255) (  0 / 255),
+    Color3 (255 / 255) (153 / 255) (  0 / 255),
+    Color3 (204 / 255) (255 / 255) (  0 / 255),
+    Color3 ( 51 / 255) (255 / 255) (  0 / 255),
+    Color3 (  0 / 255) (255 / 255) (102 / 255),
+    Color3 (  0 / 255) (255 / 255) (255 / 255),
+    Color3 (  0 / 255) (102 / 255) (255 / 255),
+    Color3 ( 51 / 255) (  0 / 255) (255 / 255),
+    Color3 (204 / 255) (  0 / 255) (255 / 255),
+    Color3 (255 / 255) (  0 / 255) (153 / 255)]
 
 renderCircle :: Float -> Float -> Float -> IO ()
 renderCircle d a r = do
@@ -35,7 +41,7 @@ display spheresRef anglesRef = do
         (\(s, a, i) -> preservingMatrix $ do
             color $ circleColors !! (i `mod` length circleColors)
             renderCircle (distance s) a 2)
-        (zip3 spheres angles [1..])
+        (zip3 spheres angles [0..])
     swapBuffers
 
 timer spheresRef anglesRef = do
