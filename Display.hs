@@ -47,8 +47,8 @@ display spheresRef anglesRef = do
 timer spheresRef anglesRef = do
     angles <- get anglesRef
     spheres <- get spheresRef
-    newAngles <- mapM
-        (\(s, a) -> do
+    newAngles <- sequence $ zipWith
+        (\s a -> do
             let a' = a + period s
             if a' > 2 * pi
                 then do
@@ -57,7 +57,7 @@ timer spheresRef anglesRef = do
                     return $ a' - 2 * pi
                 else do
                     return a')
-        (zip spheres angles)
+        spheres angles
     anglesRef $=! newAngles
     addTimerCallback 10 $ timer spheresRef anglesRef
     postRedisplay Nothing
