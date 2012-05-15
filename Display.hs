@@ -44,14 +44,13 @@ timer spheresRef anglesRef = do
     newAngles <- mapM
         (\(s, a) -> do
             let a' = a + period s
-            a'' <- if a' > 2 * pi
+            if a' > 2 * pi
                 then do
                     playSine (max 0.8 $ 0.02 * pi / period s) (mass s)
                     {-playSine 1 (mass s)-}
                     return $ a' - 2 * pi
                 else do
-                    return a'
-            return a'')
+                    return a')
         (zip spheres angles)
     anglesRef $=! newAngles
     addTimerCallback 10 $ timer spheresRef anglesRef
