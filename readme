@@ -1,8 +1,13 @@
-Celestial Music
-Author: Max Boge
+Project: Celestial Music
+Author:  Max Bogue
 
-A simple program that takes solar system structure as input and produces
-an audio/visualization of that solar system.
+Done as a final project for Music of the Spheres, a curious class with
+professor Joel Kastner at RIT.  The class focused on the ancient relationship
+between music and astronomy, and simultaneously on modern techniques for
+finding planets.
+
+This project is a simple program that takes solar system structure as
+input and produces an audio/visualization of that solar system.
 
 See the sol.json file for example input.
 
