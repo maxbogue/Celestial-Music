@@ -1,0 +1,11 @@
+Celestial Music
+Author: Max Boge
+
+A simple program that takes solar system structure as input and produces
+an audio/visualization of that solar system.
+
+See the sol.json file for example input.
+
+To run using GHC:
+
+$ ghc CelestialMusic.hs && ./CelestialMusic sol.json
