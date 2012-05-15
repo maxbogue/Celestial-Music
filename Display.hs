@@ -52,7 +52,7 @@ timer spheresRef anglesRef = do
             let a' = a + period s
             if a' > 2 * pi
                 then do
-                    playSine (max 0.8 $ 0.02 * pi / period s) (mass s)
+                    playSine (0.02 * pi / period s) (50 + mass s)
                     {-playSine 1 (mass s)-}
                     return $ a' - 2 * pi
                 else do
