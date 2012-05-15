@@ -1,6 +1,7 @@
-{-----------------------------------------------------------------------------
-    tomato-rubato
-------------------------------------------------------------------------------}
+{-
+    This is a slightly modified version of the tomato-rubato library.
+    http://hackage.haskell.org/package/tomato-rubato-openal
+-}
 module Tomato (
     -- * Synopsis
     -- | Very small module for playing audio data on your speakers.
