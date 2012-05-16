@@ -18,7 +18,7 @@ sineWave :: Float -> Integer -> Float
 sineWave freq t = sin $ 2 * pi * freq * dt * fromIntegral t
 
 expDecay :: Float -> Integer -> Float
-expDecay d t = 10 ** (-4 * dt / d * fromIntegral t)
+expDecay d t = 10 ** (-3 * dt / d * fromIntegral t)
 
 playSine :: Float -> Float -> IO ThreadId
 playSine d f = forkIO $
