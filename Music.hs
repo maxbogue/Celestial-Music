@@ -6,7 +6,7 @@ import Tomato
 
 waveProduct :: [Integer -> Float] -> [Float]
 waveProduct waveFuncs = map waveProduct' [0..] where
-    waveProduct' t = foldl (*) 1 $ map (\f -> f t) waveFuncs
+    waveProduct' t = foldl (*) 1 $ map ($ t) waveFuncs
 
 sampleRate :: SampleRate
 sampleRate = 22050
@@ -26,7 +26,6 @@ playSine d f = forkIO $
   where
     sound = take (ceiling $ d / dt)
           $ waveProduct [expDecay d, sineWave f]
-          -- $ map ((* 0.5) . sineWave f) [0..]
 
 initOpenAL = do
     Just device  <- openDevice Nothing

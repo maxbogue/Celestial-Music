@@ -7,6 +7,6 @@ import Text.JSON.Generic
 
 data Sphere = Sphere {
     distance :: Float, -- km
-    period :: Float,   -- Days
+    period :: Float,   -- days
     mass :: Float      -- kg
   } deriving (Typeable, Data, Show, Eq, Ord)
