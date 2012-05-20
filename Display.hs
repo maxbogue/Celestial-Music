@@ -1,25 +1,13 @@
 module Display where
 
 import Graphics.UI.GLUT
+
 import Sphere
 import Music
 
 windowPixels = 800 :: Integer
 windowScale  = 100 :: Float
 windowConversion = fromIntegral windowPixels / windowScale / 2
-
-circleColors :: [Color3 Float]
-circleColors = [
-    Color3 (255 / 255) (  0 / 255) (  0 / 255),
-    Color3 (255 / 255) (153 / 255) (  0 / 255),
-    Color3 (204 / 255) (255 / 255) (  0 / 255),
-    Color3 ( 51 / 255) (255 / 255) (  0 / 255),
-    Color3 (  0 / 255) (255 / 255) (102 / 255),
-    Color3 (  0 / 255) (255 / 255) (255 / 255),
-    Color3 (  0 / 255) (102 / 255) (255 / 255),
-    Color3 ( 51 / 255) (  0 / 255) (255 / 255),
-    Color3 (204 / 255) (  0 / 255) (255 / 255),
-    Color3 (255 / 255) (  0 / 255) (153 / 255)]
 
 renderCircle :: Float -> Float -> Float -> IO ()
 renderCircle d a r = do
@@ -31,17 +19,17 @@ reshape s = do
     viewport $= (Position 0 0, s)
     postRedisplay Nothing
 
-display spheresRef anglesRef = do
+display spheresRef anglesRef colors = do
     clear [ColorBuffer]
     loadIdentity
     (let s = 1 / windowScale in scale s s s)
     spheres <- get spheresRef
     angles <- get anglesRef
     mapM_
-        (\(s, a, i) -> preservingMatrix $ do
-            color $ circleColors !! (i `mod` length circleColors)
-            renderCircle (distance s) a 2)
-        (zip3 spheres angles [0..])
+        (\(s, a, c) -> preservingMatrix $ do
+            color c
+            renderCircle ((fromRational . toRational) $ distance s) a 2)
+        (zip3 spheres angles colors)
     swapBuffers
 
 timer spheresRef anglesRef = do
