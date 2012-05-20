@@ -1,0 +1,26 @@
+Name:               CelestialMusic
+Version:            0.1
+Synopsis:           Audio/visualization for solar systems.
+
+License:            BSD3
+License-file:       license
+Author:             Max Bogue
+Copyright:          (c) Max Bogue 2012
+
+build-type:         Simple
+cabal-version:      >= 1.6
+
+source-repository head
+    type:           git
+    location:       git://github.com/maxbogue/Celestial-Music.git
+
+executable CelestialMusic
+    main-is:        CelestialMusic.hs
+    build-depends:  base == 4.*,
+                    colour == 2.3.*,
+                    json == 0.*,
+                    stm == 2.2.*,
+                    vector == 0.9.*,
+                    GLUT == 2.1.*,
+                    OpenGL == 2.2.3.*,
+                    OpenAL == 1.4.*
