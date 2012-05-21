@@ -25,7 +25,7 @@ playSine d f = forkIO $
     withSpeakers sampleRate 128 $ \s -> playSamples s sound
   where
     sound = take (ceiling $ d / dt)
-          $ waveProduct [expDecay d, sineWave f]
+          $ waveProduct [expDecay d, sineWave f, const 0.5]
 
 initOpenAL = do
     Just device  <- openDevice Nothing
