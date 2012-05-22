@@ -3,6 +3,7 @@ import Data.Colour.RGBSpace.HSV (hsv)
 import Data.IORef
 import Data.List (sort)
 import Graphics.UI.GLUT hiding (RGB, Sphere)
+import System.Random (getStdGen, randoms)
 
 import Display
 import Input (readSpheres)
@@ -18,11 +19,11 @@ colorList :: Int -> [Color3 Float]
 colorList n = [case hsv (fromIntegral i * 360 / fromIntegral n) 1 1 of
     RGB r g b -> Color3 r g b | i <- [0..n-1]]
 
-main = do 
+main = do
     spheres <- readSpheres
     spheresRef <- newIORef $ map reduceSphere (sort spheres)
     anglesRef <- let n = fromIntegral $ length spheres in
-        newIORef [0 | i <- [1..n]]
+        newIORef . take n . map (2 * pi *) . randoms =<< getStdGen
     let colors = colorList $ length spheres
 
     initOpenAL
