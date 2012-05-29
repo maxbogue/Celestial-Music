@@ -7,5 +7,6 @@ import Sphere
 readSpheres :: IO ([Sphere])
 readSpheres = do
     args <- getArgs
-    jsonText <- readFile $ head args
-    return $ decodeJSON jsonText
+    case args of
+        []      -> error "bad arguments.\nUsage: CelestialMusic <input_file>"
+        (arg:_) -> readFile arg >>= return . decodeJSON
